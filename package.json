@@ -1,0 +1,48 @@
+{
+  "name": "jest-coverage-to-csv",
+  "version": "0.0.1",
+  "description": "Convert jest coverage json to csv",
+  "main": "./lib/index.js",
+  "bin": "./lib/index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/babel src -d lib",
+    "dev": "yarn build && yarn start examples/coverage/coverage-summary.json examples/coverage/coverage-summary.csv",
+    "lint": "node ./node_modules/eslint/bin/eslint.js .",
+    "start": "node ./lib/index.js",
+    "test": "yarn build && cross-env NODE_ENV=test TZ=UTC jest -c jest.config.js --maxWorkers=2 --maxConcurrency=4",
+    "test:coverage": "yarn test --coverage",
+    "test:coverage-csv": "yarn test:coverage --coverageReporters=json-summary && yarn build && yarn start",
+    "test:coverage-html": "yarn test:coverage --coverageReporters=html && xdg-open coverage/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rizqirizqi/jest-coverage-to-csv.git"
+  },
+  "keywords": [
+    "jest",
+    "converter",
+    "csv"
+  ],
+  "author": "Mgs. M. Rizqi Fadhlurrahman <rizqirizqi23@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rizqirizqi/jest-coverage-to-csv/issues"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "yargs": "^15.4.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
+    "directory-tree": "^2.2.4",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "jest": "^26.1.0",
+    "spawn-command": "^0.0.2-1"
+  }
+}

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Blackbox Test Convert Coverage to CSV jest-coverage-to-csv examples/coverage/coverage-summary.json  examples/coverage/coverage-summary.csv | it converts the json file 1`] = `
+"Filename, % Statements, Statements, % Branches, Branches, % Functions, Functions, % Lines, Lines
+All Files, 100, 2/2, 80, 4/5, 100, 6/6, 100, 6/6
+examples/number.js, 100, 6/6, 80, 4/5, 100, 2/2, 100, 6/6
+"
+`;
+
+exports[`Blackbox Test Convert Coverage to CSV jest-coverage-to-csv examples/coverage/coverage-summary.json  examples/coverage/coverage-summary.csv --so --po | it converts the json file with option --so --po 1`] = `
+"Filename, % Statements
+All Files, 100
+examples/number.js, 100
+"
+`;
+
+exports[`Blackbox Test jest-coverage-to-csv --help 1`] = `
+"$ node ./lib/index.js --help
+Convert jest coverage report from coverage-summary to csv
+Usage: jest-coverage-to-csv [source] [target] [options]
+
+Options:
+  --so, --statement-only   Print statement only instead of all summary  [boolean] [default: false]
+  --po, --percentage-only  Print percentage only instead of all details  [boolean] [default: false]
+  --help, -h               Show help  [boolean]
+  --version, -v            Show version number  [boolean]
+
+Examples:
+  jest-coverage-to-csv
+  jest-coverage-to-csv coverage/coverage-summary.json coverage/coverage-summary.csv
+  yarn test --coverage --coverageReporters=json-summary && jest-coverage-to-csv
+"
+`;
