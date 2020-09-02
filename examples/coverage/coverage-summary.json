@@ -25,7 +25,7 @@
       "pct": 80
     }
   },
-  "/home/mgsrizqi/projects/jest-coverage-to-csv/examples/number.js": {
+  "examples/number.js": {
     "lines": {
       "total": 6,
       "covered": 6,

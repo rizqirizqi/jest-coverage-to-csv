@@ -1,6 +1,6 @@
 {
   "name": "jest-coverage-to-csv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Convert jest coverage json to csv",
   "main": "./lib/index.js",
   "bin": "./lib/index.js",
@@ -33,16 +33,16 @@
     "yargs": "^15.4.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
     "directory-tree": "^2.2.4",
-    "eslint": "^7.5.0",
+    "eslint": "^7.8.1",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
-    "jest": "^26.1.0",
+    "jest": "^26.4.2",
     "spawn-command": "^0.0.2-1"
   }
 }
