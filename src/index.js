@@ -42,17 +42,17 @@ try {
 
   const coverageFile = fs.readFileSync(source);
   const coverageJson = JSON.parse(coverageFile);
-  let coverageCsv = '';
+  let coverageCsv = [];
   if (argv.so) {
     if (argv.po) {
-      coverageCsv += 'Filename, % Statements\n';
+      coverageCsv.push('Filename, % Statements');
     } else {
-      coverageCsv += 'Filename, % Statements, Statements\n';
+      coverageCsv.push('Filename, % Statements, Statements');
     }
   } else if (argv.po) {
-    coverageCsv += 'Filename, % Statements, % Branches, % Functions, % Lines\n';
+    coverageCsv.push('Filename, % Statements, % Branches, % Functions, % Lines');
   } else {
-    coverageCsv += 'Filename, % Statements, Statements, % Branches, Branches, % Functions, Functions, % Lines, Lines\n';
+    coverageCsv.push('Filename, % Statements, Statements, % Branches, Branches, % Functions, Functions, % Lines, Lines');
   }
   Object.entries(coverageJson).forEach(([key, val]) => {
     const filename = key.replace(/^total$/, 'All Files').replace(new RegExp(`^${process.cwd()}/`), '');
@@ -62,16 +62,21 @@ try {
     const ln = val.lines;
     if (argv.so) {
       if (argv.po) {
-        coverageCsv += `${filename}, ${st.pct}\n`;
+        coverageCsv.push(`${filename}, ${st.pct}`);
       } else {
-        coverageCsv += `${filename}, ${st.pct}, ${st.covered}/${st.total}\n`;
+        coverageCsv.push(`${filename}, ${st.pct}, ${st.covered}/${st.total}`);
       }
     } else if (argv.po) {
-      coverageCsv += `${filename}, ${st.pct}, ${br.pct}, ${fn.pct}, ${ln.pct}\n`;
+      coverageCsv.push(`${filename}, ${st.pct}, ${br.pct}, ${fn.pct}, ${ln.pct}`);
     } else {
-      coverageCsv += `${filename}, ${st.pct}, ${st.covered}/${st.total}, ${br.pct}, ${br.covered}/${br.total}, ${fn.pct}, ${fn.covered}/${fn.total}, ${ln.pct}, ${ln.covered}/${ln.total}\n`;
+      coverageCsv.push(`${filename}, ${st.pct}, ${st.covered}/${st.total}, ${br.pct}, ${br.covered}/${br.total}, ${fn.pct}, ${fn.covered}/${fn.total}, ${ln.pct}, ${ln.covered}/${ln.total}`);
     }
   });
+  coverageCsv = [
+    ...coverageCsv.slice(0, 2),
+    ...coverageCsv.slice(2).sort((a, b) => a.localeCompare(b)),
+    '',
+  ].join('\n');
   fs.writeFileSync(target, coverageCsv, { recursive: true, flag: 'w' });
   console.log('Conversion to CSV success!');
 } catch (err) {
