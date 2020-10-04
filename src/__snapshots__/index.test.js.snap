@@ -20,10 +20,10 @@ Convert jest coverage report from coverage-summary to csv
 Usage: jest-coverage-to-csv [source] [target] [options]
 
 Options:
-  --so, --statement-only   Print statement only instead of all summary  [boolean] [default: false]
-  --po, --percentage-only  Print percentage only instead of all details  [boolean] [default: false]
-  --help, -h               Show help  [boolean]
-  --version, -v            Show version number  [boolean]
+      --so, --statement-only   Print statement only instead of all summary  [boolean] [default: false]
+      --po, --percentage-only  Print percentage only instead of all details  [boolean] [default: false]
+  -h, --help                   Show help  [boolean]
+  -v, --version                Show version number  [boolean]
 
 Examples:
   jest-coverage-to-csv
