@@ -1,27 +1,28 @@
 #!/usr/bin/env node
-import { usage } from 'yargs';
+import yargs from 'yargs';
 import { resolve } from 'path';
 import fs from 'fs';
 import { getExt, isFile } from './helpers';
 
-const { argv } = usage('Convert jest coverage report from coverage-summary to csv\nUsage: jest-coverage-to-csv [source] [target] [options]')
+const usageText = 'Convert jest coverage report from coverage-summary to csv\n'
+                + 'Usage: jest-coverage-to-csv [source] [target] [options]\n'
+                + '\n'
+                + 'Source  :  Source path for the coverage-summary json input  [string] [default: "./coverage/coverage-summary.json"]\n'
+                + 'Target  :  Target path for the coverage-summary csv output  [string] [default: "./coverage/coverage-summary.csv"]';
+
+const { argv } = yargs(process.argv.slice(2))
+  .usage(usageText)
   .wrap(null)
   .example('jest-coverage-to-csv')
   .example('jest-coverage-to-csv coverage/coverage-summary.json coverage/coverage-summary.csv')
   .example('yarn test --coverage --coverageReporters=json-summary && jest-coverage-to-csv')
-  .options('so', {
-    alias: 'statement-only',
+  .options('f', {
+    alias: 'filter',
     demandOption: false,
-    default: false,
-    describe: 'Print statement only instead of all summary',
-    type: 'boolean',
-  })
-  .options('po', {
-    alias: 'percentage-only',
-    demandOption: false,
-    default: false,
-    describe: 'Print percentage only instead of all details',
-    type: 'boolean',
+    default: '',
+    describe: 'Show only specified column. Available filters: p percentages | s statements | b branches | f functions | l lines',
+    type: 'string',
+    requiresArg: true,
   })
   .help()
   .alias('help', 'h')
@@ -31,6 +32,12 @@ const { argv } = usage('Convert jest coverage report from coverage-summary to cs
 try {
   const source = argv._[0] || './coverage/coverage-summary.json';
   let target = argv._[1] || './coverage/coverage-summary.csv';
+  const hasFilter = argv.filter !== '' && argv.filter !== 'p';
+  const isPercentageOnly = argv.filter.includes('p');
+  const isStatementsOnly = hasFilter ? argv.filter.includes('s') : true;
+  const isBranchesOnly = hasFilter ? argv.filter.includes('b') : true;
+  const isFunctionsOnly = hasFilter ? argv.filter.includes('f') : true;
+  const isLinesOnly = hasFilter ? argv.filter.includes('l') : true;
 
   if (getExt(source) !== 'json') {
     throw new Error('The source must be a JSON file.');
@@ -43,34 +50,24 @@ try {
   const coverageFile = fs.readFileSync(source);
   const coverageJson = JSON.parse(coverageFile);
   let coverageCsv = [];
-  if (argv.so) {
-    if (argv.po) {
-      coverageCsv.push('Filename, % Statements');
-    } else {
-      coverageCsv.push('Filename, % Statements, Statements');
-    }
-  } else if (argv.po) {
-    coverageCsv.push('Filename, % Statements, % Branches, % Functions, % Lines');
-  } else {
-    coverageCsv.push('Filename, % Statements, Statements, % Branches, Branches, % Functions, Functions, % Lines, Lines');
-  }
+  let headers = 'Filename';
+  if (isStatementsOnly) headers += isPercentageOnly ? ', % Statements' : ', % Statements, Statements';
+  if (isBranchesOnly) headers += isPercentageOnly ? ', % Branches' : ', % Branches, Branches';
+  if (isFunctionsOnly) headers += isPercentageOnly ? ', % Functions' : ', % Functions, Functions';
+  if (isLinesOnly) headers += isPercentageOnly ? ', % Lines' : ', % Lines, Lines';
+  coverageCsv.push(headers);
   Object.entries(coverageJson).forEach(([key, val]) => {
     const filename = key.replace(/^total$/, 'All Files').replace(new RegExp(`^${process.cwd()}/`), '');
     const st = val.statements;
     const br = val.branches;
     const fn = val.functions;
     const ln = val.lines;
-    if (argv.so) {
-      if (argv.po) {
-        coverageCsv.push(`${filename}, ${st.pct}`);
-      } else {
-        coverageCsv.push(`${filename}, ${st.pct}, ${st.covered}/${st.total}`);
-      }
-    } else if (argv.po) {
-      coverageCsv.push(`${filename}, ${st.pct}, ${br.pct}, ${fn.pct}, ${ln.pct}`);
-    } else {
-      coverageCsv.push(`${filename}, ${st.pct}, ${st.covered}/${st.total}, ${br.pct}, ${br.covered}/${br.total}, ${fn.pct}, ${fn.covered}/${fn.total}, ${ln.pct}, ${ln.covered}/${ln.total}`);
-    }
+    let content = filename;
+    if (isStatementsOnly) content += isPercentageOnly ? `, ${st.pct}` : `, ${st.pct}, ${st.covered}/${st.total}`;
+    if (isBranchesOnly) content += isPercentageOnly ? `, ${br.pct}` : `, ${br.pct}, ${br.covered}/${br.total}`;
+    if (isFunctionsOnly) content += isPercentageOnly ? `, ${fn.pct}` : `, ${fn.pct}, ${fn.covered}/${fn.total}`;
+    if (isLinesOnly) content += isPercentageOnly ? `, ${ln.pct}` : `, ${ln.pct}, ${ln.covered}/${ln.total}`;
+    coverageCsv.push(content);
   });
   coverageCsv = [
     ...coverageCsv.slice(0, 2),

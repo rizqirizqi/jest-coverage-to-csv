@@ -1,16 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Blackbox Test Convert Coverage to CSV jest-coverage-to-csv examples/coverage/coverage-summary.json  examples/coverage/coverage-summary.csv | it converts the json file 1`] = `
+exports[`Blackbox Test Convert Coverage to CSV jest-coverage-to-csv examples/coverage/coverage-summary.json examples/coverage/coverage-summary.csv | it converts the json file 1`] = `
 "Filename, % Statements, Statements, % Branches, Branches, % Functions, Functions, % Lines, Lines
 All Files, 100, 2/2, 80, 4/5, 100, 6/6, 100, 6/6
 examples/number.js, 100, 6/6, 80, 4/5, 100, 2/2, 100, 6/6
 "
 `;
 
-exports[`Blackbox Test Convert Coverage to CSV jest-coverage-to-csv examples/coverage/coverage-summary.json  examples/coverage/coverage-summary.csv --so --po | it converts the json file with option --so --po 1`] = `
-"Filename, % Statements
-All Files, 100
-examples/number.js, 100
+exports[`Blackbox Test Convert Coverage to CSV jest-coverage-to-csv examples/coverage/coverage-summary.json examples/coverage/coverage-summary.csv -f p | it converts the json file with option -f p 1`] = `
+"Filename, % Statements, % Branches, % Functions, % Lines
+All Files, 100, 80, 100, 100
+examples/number.js, 100, 80, 100, 100
+"
+`;
+
+exports[`Blackbox Test Convert Coverage to CSV jest-coverage-to-csv examples/coverage/coverage-summary.json examples/coverage/coverage-summary.csv -f psl | it converts the json file with option -f psl 1`] = `
+"Filename, % Statements, % Lines
+All Files, 100, 100
+examples/number.js, 100, 100
 "
 `;
 
@@ -19,11 +26,13 @@ exports[`Blackbox Test jest-coverage-to-csv --help 1`] = `
 Convert jest coverage report from coverage-summary to csv
 Usage: jest-coverage-to-csv [source] [target] [options]
 
+Source  :  Source path for the coverage-summary json input  [string] [default: \\"./coverage/coverage-summary.json\\"]
+Target  :  Target path for the coverage-summary csv output  [string] [default: \\"./coverage/coverage-summary.csv\\"]
+
 Options:
-      --so, --statement-only   Print statement only instead of all summary  [boolean] [default: false]
-      --po, --percentage-only  Print percentage only instead of all details  [boolean] [default: false]
-  -h, --help                   Show help  [boolean]
-  -v, --version                Show version number  [boolean]
+  -f, --filter   Show only specified column. Available filters: p percentages | s statements | b branches | f functions | l lines  [string] [default: \\"\\"]
+  -h, --help     Show help  [boolean]
+  -v, --version  Show version number  [boolean]
 
 Examples:
   jest-coverage-to-csv

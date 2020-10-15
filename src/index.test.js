@@ -11,8 +11,8 @@ const getOutputFile = (dir = EXAMPLE_DIR) => dirTree(dir, { extensions: /\.csv/ 
 
 const clearOutputs = (dir = EXAMPLE_DIR) => {
   const outputFile = getOutputFile(dir);
-  outputFile.children.forEach((img) => {
-    unlinkSync(img.path);
+  outputFile.children.forEach((file) => {
+    unlinkSync(file.path);
   });
 };
 
@@ -63,7 +63,7 @@ describe('Blackbox Test', () => {
     afterEach(() => {
       clearOutputs();
     });
-    test('jest-coverage-to-csv examples/coverage/coverage-summary.json  examples/coverage/coverage-summary.csv | it converts the json file', async () => {
+    test('jest-coverage-to-csv examples/coverage/coverage-summary.json examples/coverage/coverage-summary.csv | it converts the json file', async () => {
       const inputFile = getInputFile();
       let outputFile = getOutputFile();
       expect(inputFile.children.length).toBe(1);
@@ -77,12 +77,26 @@ describe('Blackbox Test', () => {
       });
     });
 
-    test('jest-coverage-to-csv examples/coverage/coverage-summary.json  examples/coverage/coverage-summary.csv --so --po | it converts the json file with option --so --po', async () => {
+    test('jest-coverage-to-csv examples/coverage/coverage-summary.json examples/coverage/coverage-summary.csv -f p | it converts the json file with option -f p', async () => {
       const inputFile = getInputFile();
       let outputFile = getOutputFile();
       expect(inputFile.children.length).toBe(1);
       expect(outputFile.children.length).toBe(0);
-      return runCLI(`${EXAMPLE_DIR}/coverage-summary.json ${EXAMPLE_DIR}/coverage-summary.csv --so --po`).then((stdout) => {
+      return runCLI(`${EXAMPLE_DIR}/coverage-summary.json ${EXAMPLE_DIR}/coverage-summary.csv -f p`).then((stdout) => {
+        outputFile = getOutputFile();
+        expect(outputFile.children.length).toBe(1);
+        expect(stdout.match(/Conversion to CSV success!/g)).toHaveLength(1);
+        const fileContent = readFileSync(`${EXAMPLE_DIR}/coverage-summary.csv`, { encoding: 'utf8' });
+        expect(fileContent).toMatchSnapshot();
+      });
+    });
+
+    test('jest-coverage-to-csv examples/coverage/coverage-summary.json examples/coverage/coverage-summary.csv -f psl | it converts the json file with option -f psl', async () => {
+      const inputFile = getInputFile();
+      let outputFile = getOutputFile();
+      expect(inputFile.children.length).toBe(1);
+      expect(outputFile.children.length).toBe(0);
+      return runCLI(`${EXAMPLE_DIR}/coverage-summary.json ${EXAMPLE_DIR}/coverage-summary.csv -f psl`).then((stdout) => {
         outputFile = getOutputFile();
         expect(outputFile.children.length).toBe(1);
         expect(stdout.match(/Conversion to CSV success!/g)).toHaveLength(1);
