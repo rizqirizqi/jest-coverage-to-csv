@@ -65,3 +65,14 @@ lib/
 
 # ignore csv output
 *.csv
+
+
+# macOS "junk" files
+.DS_Store
+._*
+
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
