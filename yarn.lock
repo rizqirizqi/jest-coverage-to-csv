@@ -1899,9 +1899,9 @@ core-js-compat@^3.20.0, core-js-compat@^3.22.1:
     semver "7.0.0"
 
 core-js@^3.17.3:
-  version "3.22.5"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.22.5.tgz#a5f5a58e663d5c0ebb4e680cd7be37536fb2a9cf"
-  integrity sha512-VP/xYuvJ0MJWRAobcmQ8F2H6Bsn+s7zqAAjFaHGBMc5AQm7zaelhD1LGduFn2EehEcQcU+br6t+fwbpQ5d1ZWA==
+  version "3.23.2"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.23.2.tgz#e07a60ca8b14dd129cabdc3d2551baf5a01c76f0"
+  integrity sha512-ELJOWxNrJfOH/WK4VJ3Qd+fOqZuOuDNDJz0xG6Bt4mGg2eO/UT9CljCrbqDGovjLKUrGajEEBcoTOc0w+yBYeQ==
 
 cross-env@^7.0.3:
   version "7.0.3"
@@ -2014,9 +2014,9 @@ diff-sequences@^27.5.1:
   integrity sha512-k1gCAXAsNgLwEL+Y8Wvl+M6oEFj5bgazfZULpS5CneoPPXRaCCW7dm+q21Ky2VEE5X+VeRDBVg1Pcvvsr4TtNQ==
 
 directory-tree@^3.0.0:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/directory-tree/-/directory-tree-3.2.2.tgz#fe0cc6ddfcf8d6a873f30e3544d938a0e07ffb27"
-  integrity sha512-4AuGTfhWD0xOTRGmOfOL5xBWgV/IXbpsNb1/R721u+ZwJo01QdaFOXLy/RJj2N7LmcvVvs8tzGgYdh+liudiAg==
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/directory-tree/-/directory-tree-3.3.0.tgz#dd85c82e21b3f88dca5b97a28d0a36068fb96bfe"
+  integrity sha512-7NT+6BjkwRKvVP5dCkYhO/pRHQJ5Jw8ww1detHLiD9/IPdTzFz6Lz9aCm0zRgp2zfECXPxBoNdzR3VTEhljeHg==
   dependencies:
     command-line-args "^5.2.0"
     command-line-usage "^6.1.1"
