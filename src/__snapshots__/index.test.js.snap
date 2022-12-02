@@ -26,11 +26,11 @@ exports[`Blackbox Test jest-coverage-to-csv --help 1`] = `
 Convert jest coverage report from coverage-summary to csv
 Usage: jest-coverage-to-csv [source] [target] [options]
 
-Source  :  Source path for the coverage-summary json input  [string] [default: \\"./coverage/coverage-summary.json\\"]
-Target  :  Target path for the coverage-summary csv output  [string] [default: \\"./coverage/coverage-summary.csv\\"]
+Source  :  Source path for the coverage-summary json input  [string] [default: "./coverage/coverage-summary.json"]
+Target  :  Target path for the coverage-summary csv output  [string] [default: "./coverage/coverage-summary.csv"]
 
 Options:
-  -f, --filter   Show only specified column. Available filters: p percentages | s statements | b branches | f functions | l lines  [string] [default: \\"\\"]
+  -f, --filter   Show only specified column. Available filters: p percentages | s statements | b branches | f functions | l lines  [string] [default: ""]
   -h, --help     Show help  [boolean]
   -v, --version  Show version number  [boolean]
 
