@@ -1,6 +1,6 @@
 {
   "name": "jest-coverage-to-csv",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Convert jest coverage json to csv",
   "main": "./lib/index.js",
   "bin": "./lib/index.js",
