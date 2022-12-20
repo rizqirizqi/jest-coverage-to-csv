@@ -1965,9 +1965,9 @@ diff-sequences@^29.3.1:
   integrity sha512-hlM3QR272NXCi4pq+N4Kok4kOp6EsgOM3ZSpJI7Da3UAs+Ttsi8MRmB6trM/lhyzUxGfOgnpkHtgqm5Q/CTcfQ==
 
 directory-tree@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/directory-tree/-/directory-tree-3.4.0.tgz#706eb6f35a5abcc3730004bc55c6def86c87f18a"
-  integrity sha512-8eNxj/KngIac7449j8GYzapoDfr0DjtR/HMKwYBI4xqnBRLVkVAs1hzso1pimXK/U8ihAXlKmxVAmorb/GD/Rg==
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/directory-tree/-/directory-tree-3.5.0.tgz#0f7087bda1c9a3709b93908fcf19625d39615702"
+  integrity sha512-7dADWH+rD+UoYcECvnqeKWarz1oFoyERArY59rEoxdAKBxuAjt7d/Cdfg2bBVAwOeFuUwIRH/DKru8SMPtoybg==
   dependencies:
     command-line-args "^5.2.0"
     command-line-usage "^6.1.1"
