@@ -54,7 +54,7 @@ yarn lint
 
 MIT
 
-[build-badge]: https://img.shields.io/github/workflow/status/rizqirizqi/jest-coverage-to-csv/Publish?style=flat-square
+[build-badge]: https://img.shields.io/github/actions/workflow/status/rizqirizqi/jest-coverage-to-csv/.github/workflows/test.yml?branch=master&style=flat-square
 [build-url]: https://github.com/rizqirizqi/jest-coverage-to-csv/actions
 [version-badge]: https://img.shields.io/npm/v/jest-coverage-to-csv.svg?style=flat-square
 [version-url]: https://www.npmjs.com/package/jest-coverage-to-csv
