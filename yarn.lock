@@ -4214,10 +4214,10 @@ source-map@^0.6.0, source-map@^0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-spawn-command@^0.0.2-1:
-  version "0.0.2-1"
-  resolved "https://registry.yarnpkg.com/spawn-command/-/spawn-command-0.0.2-1.tgz#62f5e9466981c1b796dc5929937e11c9c6921bd0"
-  integrity sha1-YvXpRmmBwbeW3Fkpk34RycaSG9A=
+spawn-command@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/spawn-command/-/spawn-command-0.0.3.tgz#21aef48e475963cf993d0eaae211f7219c1f6078"
+  integrity sha512-8k2zJcDJEwRXcbtIcKuk+a/AZsAm5NHTp9XJKYj2peHe3WRzNBVCjD9j49Ul1IZOt+sFOmfCcPcGFvGypNiW9A==
 
 sprintf-js@~1.0.2:
   version "1.0.3"
